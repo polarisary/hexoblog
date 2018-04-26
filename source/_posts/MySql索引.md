@@ -2,7 +2,7 @@
 title: MySql索引
 date: 2018-01-23 18:01:52
 categories: MySQL
-tags: MySQL B-Tree
+tags: [MySQL,B-Tree]
 ---
 ## MySql索引分类：
 ### 1）B-Tree

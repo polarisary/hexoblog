@@ -2,7 +2,7 @@
 title: Shader渲染流水线
 date: 2017-03-29 14:43:43
 categories: Unity #文章文类
-tags: unity shader 渲染流水线 光照模型
+tags: [unity,shader,渲染流水线,光照模型]
 ---
 
 GPU流水线上可高度编程的阶段，包括表面着色器、顶点片元着色器、固定管线着色器。目前的Unity5中，本质上只有顶点片元着色器

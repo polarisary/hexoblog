@@ -2,7 +2,7 @@
 title: MySql概述
 date: 2018-01-22 19:23:37
 categories: MySQL
-tags: MySQL MVCC
+tags: [MySQL,MVCC]
 ---
 
 ** 并发控制： **
