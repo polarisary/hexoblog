@@ -1,5 +1,5 @@
 ---
-title: IO模型
+title: 四种基本的I/O模型
 date: 2018-05-16 21:55:00
 categories: IO
 tags: [Blocking,IO,同步,异步]
@@ -23,8 +23,6 @@ IO多路复用的三种方式：
 用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。然后，kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了。
 异步最大特点：全程无阻塞
 
-** 同步IO ** ：包括 blocking IO、non-blocking、select、poll、epoll（故:epool只是伪异步而已）（有阻塞）
-** 异步IO ** ：包括:asynchronous  （无阻塞）
 
 ### sellect、poll、epoll三者的区别 :
 #### select：
@@ -58,3 +56,18 @@ select通过一个select()系统调用来监视多个文件描述符的数组，
 - 另一个本质的改进在于epoll采用基于事件的就绪通知方式。在select/poll中，进程只有在调用一定的方法后，内核才对所有监视的文件描述符进行扫描，而epoll事先通过epoll_ctl()来注册一个文件描述符，一旦基于某个文件描述符就绪时，内核会采用类似callback的回调机制，迅速激活这个文件描述符，当进程调用epoll_wait()时便得到通知。
 
 - select和poll都需要在返回后，通过遍历所有文件描述符来获取已经就绪的socket。事实上，同时连接的大量客户端在一时刻可能只有很少的处于就绪状态，因此随着监视的描述符数量的增长，其效率也会线性下降。
+
+### IO操作分两个阶段：
+- 1、等待数据准备好(数据读到内核缓存) 
+- 2、将数据从内核读到用户空间(进程空间) 
+一般来说第一阶段操作花费的时间远远大于第二阶段。 
+
+### 同步IO & 异步IO：
+** 同步IO ** ：包括 blocking IO、non-blocking、select、poll、epoll（故:epool只是伪异步而已）（有阻塞）
+** 异步IO ** ：包括:asynchronous  （无阻塞）
+** 主要区别 ** ：IO操作的第二阶段是阻塞的，然而这阶段操作花费时间远远小于第一个阶段，epoll和kqueue已经做到很好了。
+
+### Reactor & Proactor
+** Reacor模式 ** 包括：epoll（*nux）, kqueue（FreeBSD）、select（POSIX标准）
+
+** Proactor模式 ** 包括：IOCP（Windows）

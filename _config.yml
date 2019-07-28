@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 默刀
-subtitle: Study as if you were to live forever, live as if you were to die tomorrow.
-description:
-author: Zeng Wei
+title: 老K的杂货铺
+subtitle: 穷不失义，达不离道。
+description: 潜心积累、野蛮成长
+author: K教主
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://polarisary.github.io
+url: http://blog.7street.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -40,7 +40,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -73,7 +73,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 ## theme: landscape
-theme: maupassant
+## theme: maupassant
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +82,9 @@ deploy:
   type: git
   repo: https://github.com/polarisary/polarisary.github.io.git
   branch: master
+
+# 自动生成sitemap
+sitemap: 
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
